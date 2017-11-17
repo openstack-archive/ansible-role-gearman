@@ -1,0 +1,40 @@
+- job:
+    name: ansible-role-gearman
+    run: tests/test
+    required-projects:
+      - name: openstack-infra/gear
+    roles:
+      - zuul: openstack/ansible-role-gearman
+
+- job:
+    name: ansible-role-gearman-centos-7
+    parent: ansible-role-gearman
+    nodeset: centos-7
+
+- job:
+    name: ansible-role-gearman-fedora-26
+    parent: ansible-role-gearman
+    nodeset: fedora-26
+
+- job:
+    name: ansible-role-gearman-ubuntu-xenial
+    parent: ansible-role-gearman
+    nodeset: ubuntu-xenial
+
+- project:
+    name: openstack/ansible-role-gearman
+    templates:
+      - windmill-jobs-fedora-26
+      - windmill-jobs-xenial
+    check:
+      jobs:
+        - ansible-role-gearman-centos-7
+        - ansible-role-gearman-fedora-26
+        - ansible-role-gearman-ubuntu-xenial
+        - tox-linters
+    gate:
+      jobs:
+        - ansible-role-gearman-centos-7
+        - ansible-role-gearman-fedora-26
+        - ansible-role-gearman-ubuntu-xenial
+        - tox-linters
