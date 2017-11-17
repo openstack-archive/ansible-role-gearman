@@ -1,0 +1,40 @@
+- job:
+    name: ansible-role-gear
+    run: tests/test
+    required-projects:
+      - name: openstack-infra/gear
+    roles:
+      - zuul: openstack/ansible-role-gear
+
+- job:
+    name: ansible-role-gear-centos-7
+    parent: ansible-role-gear
+    nodeset: centos-7
+
+- job:
+    name: ansible-role-gear-fedora-26
+    parent: ansible-role-gear
+    nodeset: fedora-26
+
+- job:
+    name: ansible-role-gear-ubuntu-xenial
+    parent: ansible-role-gear
+    nodeset: ubuntu-xenial
+
+- project:
+    name: openstack/ansible-role-gear
+    templates:
+      - windmill-jobs-fedora-26
+      - windmill-jobs-xenial
+    check:
+      jobs:
+        - ansible-role-gear-centos-7
+        - ansible-role-gear-fedora-26
+        - ansible-role-gear-ubuntu-xenial
+        - tox-linters
+    gate:
+      jobs:
+        - ansible-role-gear-centos-7
+        - ansible-role-gear-fedora-26
+        - ansible-role-gear-ubuntu-xenial
+        - tox-linters
