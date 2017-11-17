@@ -1,0 +1,43 @@
+# Copyright 2015 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations
+# under the License.
+---
+# tasks/main.yaml
+gear_task_manager:
+  - pre
+  - install
+  - config
+  - service
+
+# tasks/config.yaml
+gear_user_name: gear
+gear_user_group: gear
+gear_user_home: /var/lib/gear
+
+# tasks/install.yaml
+gear_git_dest: /opt/ansible-role-gear/git/openstack-infra/gear
+gear_git_uri: https://git.openstack.org/openstack-infra/gear
+gear_git_version: feature/zuulv3
+# gear_git_refspec:
+# gear_git_update:
+
+gear_install_method: git
+
+gear_pip_name: gear
+# gear_pip_executable:
+# gear_pip_extra_args:
+# gear_pip_version:
+# gear_pip_virtualenv_python:
+# gear_pip_virtualenv:
+
+# tasks/service.yaml
