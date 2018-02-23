@@ -13,3 +13,11 @@
 # under the License.
 ---
 __gear_build_depends: []
+
+__gear_file_gear_service_dest: /etc/systemd/system/gear.service
+__gear_file_gear_service_mode: 0644
+__gear_file_gear_service_src: etc/systemd/system/gear.service
+
+__gear_file_gear_service_config_dest: /etc/systemd/system/gear.service.d/override.conf
+__gear_file_gear_service_config_mode: 0644
+__gear_file_gear_service_config_src: etc/systemd/system/gear.service.d/override.conf
