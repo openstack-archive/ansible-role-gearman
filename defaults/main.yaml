@@ -27,7 +27,7 @@ gear_user_home: /var/lib/gear
 # tasks/install.yaml
 gear_git_dest: /opt/ansible-role-gear/git/openstack-infra/gear
 gear_git_uri: https://git.openstack.org/openstack-infra/gear
-gear_git_version: feature/zuulv3
+gear_git_version: master
 # gear_git_refspec:
 # gear_git_update:
 
