@@ -41,3 +41,12 @@ gear_pip_name: gear
 # gear_pip_virtualenv:
 
 # tasks/service.yaml
+gear_file_gear_service_manage: true
+gear_file_gear_service_group: root
+gear_file_gear_service_owner: root
+
+gear_service_gear_daemon_reload: true
+gear_service_gear_enabled: yes
+gear_service_gear_manage: true
+gear_service_gear_name: geard
+gear_service_gear_state: started
