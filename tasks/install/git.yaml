@@ -13,7 +13,6 @@
 # under the License.
 ---
 - name: Git clone gear.
-  become: yes
   git:
     dest: "{{ gear_git_dest }}"
     refspec: "{{ gear_git_refspec|default(omit) }}"
