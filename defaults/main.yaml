@@ -24,6 +24,24 @@ gear_user_name: gear
 gear_user_group: gear
 gear_user_home: /var/lib/gear
 
+gear_file_ssl_ca_dest: /etc/gear/ssl/root-ca.pem
+gear_file_ssl_ca_group: "{{ gear_user_group }}"
+gear_file_ssl_ca_mode: 0644
+gear_file_ssl_ca_owner: "{{ gear_user_name }}"
+gear_file_ssl_ca_src: etc/gear/ssl/root-ca.pem
+
+gear_file_ssl_cert_dest: /etc/gear/ssl/server.pem
+gear_file_ssl_cert_group: "{{ gear_user_group }}"
+gear_file_ssl_cert_mode: 0644
+gear_file_ssl_cert_owner: "{{ gear_user_name }}"
+gear_file_ssl_cert_src: etc/gear/ssl/server.pem
+
+gear_file_ssl_key_dest: /etc/gear/ssl/server.key
+gear_file_ssl_key_group: "{{ gear_user_group }}"
+gear_file_ssl_key_mode: 0600
+gear_file_ssl_key_owner: "{{ gear_user_name }}"
+gear_file_ssl_key_src: etc/gear/ssl/server.key
+
 # tasks/install.yaml
 gear_git_dest: "{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/gear"
 gear_git_uri: https://git.openstack.org/openstack-infra/gear
