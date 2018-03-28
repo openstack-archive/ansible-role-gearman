@@ -9,7 +9,7 @@ Type=simple
 Environment="PREFIX=/usr/local"
 Group=gear
 User=gear
-ExecStart=/bin/sh -c "${PREFIX}/bin/geard -d"
+ExecStart=/bin/sh -c "${PREFIX}/bin/geard -d ${ARGS}"
 
 [Install]
 WantedBy=multi-user.target
