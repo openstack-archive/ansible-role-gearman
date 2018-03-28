@@ -21,4 +21,35 @@
     state: directory
   with_items:
     - /etc/gear
+    - /etc/gear/ssl
     - /var/log/gear
+
+- name: Install gear ssl ca configuration.
+  become: yes
+  template:
+    dest: "{{ gear_file_ssl_ca_dest }}"
+    group: "{{ gear_file_ssl_ca_group }}"
+    mode: "{{ gear_file_ssl_ca_mode }}"
+    owner: "{{ gear_file_ssl_ca_owner }}"
+    src: "{{ gear_file_ssl_ca_src }}"
+  register: gear_file_ssl_ca
+
+- name: Install gear ssl cert configuration.
+  become: yes
+  template:
+    dest: "{{ gear_file_ssl_cert_dest }}"
+    group: "{{ gear_file_ssl_cert_group }}"
+    mode: "{{ gear_file_ssl_cert_mode }}"
+    owner: "{{ gear_file_ssl_cert_owner }}"
+    src: "{{ gear_file_ssl_cert_src }}"
+  register: gear_file_ssl_cert
+
+- name: Install gear ssl key configuration.
+  become: yes
+  template:
+    dest: "{{ gear_file_ssl_key_dest }}"
+    group: "{{ gear_file_ssl_key_group }}"
+    mode: "{{ gear_file_ssl_key_mode }}"
+    owner: "{{ gear_file_ssl_key_owner }}"
+    src: "{{ gear_file_ssl_key_src }}"
+  register: gear_file_ssl_key

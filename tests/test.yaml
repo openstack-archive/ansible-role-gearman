@@ -21,6 +21,13 @@
     - "{{ rolename }}"
 
   post_tasks:
+    - name: Assert results are registered.
+      assert:
+        that:
+          - gear_file_ssl_ca
+          - gear_file_ssl_cert
+          - gear_file_ssl_key
+
     - name: Ensure gear_user_name is gear.
       shell: /usr/bin/getent passwd gear
       tags: skip_ansible_lint
@@ -60,3 +67,45 @@
         that:
           - gear_git_dest_stat.stat.exists
           - gear_git_dest_stat.stat.isdir
+
+    - name: Register /etc/gear/ssl/root-ca.pem
+      stat:
+        path: /etc/gear/ssl/root-ca.pem
+      register: _gear_file_ssl_ca_stat
+
+    - name: Assert _gear_file_ssl_ca_stat tests.
+      assert:
+        that:
+          - _gear_file_ssl_ca_stat.stat.exists
+          - _gear_file_ssl_ca_stat.stat.isreg
+          - _gear_file_ssl_ca_stat.stat.pw_name == 'gear'
+          - _gear_file_ssl_ca_stat.stat.gr_name == 'gear'
+          - _gear_file_ssl_ca_stat.stat.mode == '0644'
+
+    - name: Register /etc/gear/ssl/server.pem
+      stat:
+        path: /etc/gear/ssl/server.pem
+      register: _gear_file_ssl_cert_stat
+
+    - name: Assert _gear_file_ssl_cert_stat tests.
+      assert:
+        that:
+          - _gear_file_ssl_cert_stat.stat.exists
+          - _gear_file_ssl_cert_stat.stat.isreg
+          - _gear_file_ssl_cert_stat.stat.pw_name == 'gear'
+          - _gear_file_ssl_cert_stat.stat.gr_name == 'gear'
+          - _gear_file_ssl_cert_stat.stat.mode == '0644'
+
+    - name: Register /etc/gear/ssl/server.key
+      stat:
+        path: /etc/gear/ssl/server.key
+      register: _gear_file_ssl_key_stat
+
+    - name: Assert _gear_file_ssl_key_stat tests.
+      assert:
+        that:
+          - _gear_file_ssl_key_stat.stat.exists
+          - _gear_file_ssl_key_stat.stat.isreg
+          - _gear_file_ssl_key_stat.stat.pw_name == 'gear'
+          - _gear_file_ssl_key_stat.stat.gr_name == 'gear'
+          - _gear_file_ssl_key_stat.stat.mode == '0600'
