@@ -14,7 +14,6 @@
 ---
 - hosts: all
   vars:
-    gear_git_update: false
     rolename: ansible-role-gearman
 
   roles:
@@ -61,12 +60,14 @@
       stat:
         path: /home/zuul/src/git.openstack.org/openstack-infra/gear
       register: gear_git_dest_stat
+      when: gear_install_method == 'git'
 
     - name: Assert gear_git_dest tests.
       assert:
         that:
           - gear_git_dest_stat.stat.exists
           - gear_git_dest_stat.stat.isdir
+      when: gear_install_method == 'git'
 
     - name: Register /etc/gear/ssl/root-ca.pem
       stat:
