@@ -23,6 +23,6 @@
     name: "{{ item }}"
     state: installed
   with_items: "{{ gear_build_depends }}"
-  when: gear_install_method == 'git' or gear_install_method == 'pip'
+  when: gear_install_method == 'git'
 
 - include: "install/{{ gear_install_method }}.yaml"
