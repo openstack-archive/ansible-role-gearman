@@ -7,11 +7,6 @@
       - zuul: openstack/ansible-role-gearman
 
 - job:
-    name: ansible-role-gearman-centos-7
-    parent: ansible-role-gearman
-    nodeset: centos-7
-
-- job:
     name: ansible-role-gearman-fedora-27
     parent: ansible-role-gearman
     nodeset: fedora-27
@@ -32,14 +27,12 @@
       - windmill-jobs-xenial
     check:
       jobs:
-        - ansible-role-gearman-centos-7
         - ansible-role-gearman-fedora-27
         - ansible-role-gearman-ubuntu-bionic
         - ansible-role-gearman-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
-        - ansible-role-gearman-centos-7
         - ansible-role-gearman-fedora-27
         - ansible-role-gearman-ubuntu-xenial
         - tox-linters
