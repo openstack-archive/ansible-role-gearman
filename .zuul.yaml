@@ -9,8 +9,6 @@
 - job:
     name: ansible-role-gearman
     parent: ansible-role-gearman-base
-    vars:
-      gear_install_method: pip
 
 - job:
     name: ansible-role-gearman-fedora-27
