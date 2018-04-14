@@ -1,10 +1,16 @@
 - job:
-    name: ansible-role-gearman
-    run: tests/test.yaml
-    required-projects:
-      - name: openstack-infra/gear
+    name: ansible-role-gearman-base
+    pre-run: tests/playbooks/pre.yaml
+    run: tests/playbooks/run.yaml
     roles:
       - zuul: openstack/ansible-role-gearman
+
+# Testing for gearman_install_method: pip
+- job:
+    name: ansible-role-gearman
+    parent: ansible-role-gearman-base
+    vars:
+      gear_install_method: pip
 
 - job:
     name: ansible-role-gearman-fedora-27
@@ -21,6 +27,31 @@
     parent: ansible-role-gearman
     nodeset: ubuntu-xenial
 
+# Testing for gearman_install_method: git
+- job:
+    name: ansible-role-gearman-src
+    parent: ansible-role-gearman-src-base
+    required-projects:
+      - name: openstack-infra/gear
+    vars:
+      gear_git_update: false
+      gear_install_method: git
+
+- job:
+    name: ansible-role-gearman-src-fedora-27
+    parent: ansible-role-gearman-src
+    nodeset: fedora-27
+
+- job:
+    name: ansible-role-gearman-src-ubuntu-bionic
+    parent: ansible-role-gearman-src
+    nodeset: ubuntu-bionic
+
+- job:
+    name: ansible-role-gearman-src-ubuntu-xenial
+    parent: ansible-role-gearman-src
+    nodeset: ubuntu-xenial
+
 - project:
     templates:
       - windmill-jobs-fedora-27
@@ -31,9 +62,14 @@
         - ansible-role-gearman-fedora-27
         - ansible-role-gearman-ubuntu-bionic
         - ansible-role-gearman-ubuntu-xenial
+        - ansible-role-gearman-src-fedora-27
+        - ansible-role-gearman-src-ubuntu-bionic
+        - ansible-role-gearman-src-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
         - ansible-role-gearman-fedora-27
         - ansible-role-gearman-ubuntu-xenial
+        - ansible-role-gearman-src-fedora-27
+        - ansible-role-gearman-src-ubuntu-xenial
         - tox-linters
