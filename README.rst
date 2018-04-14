@@ -17,6 +17,8 @@ A pure-Python asynchronous library to interface with Gearman.
 Requirements
 ------------
 
+* pip3 to be installed if using gear_install_method: (git|pip)
+
 Packages
 ~~~~~~~~
 

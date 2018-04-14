@@ -25,4 +25,12 @@
   with_items: "{{ gear_build_depends }}"
   when: gear_install_method == 'git'
 
+- name: Define gear_pip_executable if needed.
+  set_fact:
+    gear_pip_executable: pip3
+  when:
+    - gear_install_method == 'git' or gear_install_method == 'pip'
+    - gear_pip_virtualenv_python is not defined
+    - gear_pip_executable is not defined
+
 - include: "install/{{ gear_install_method }}.yaml"
