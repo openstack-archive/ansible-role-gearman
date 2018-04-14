@@ -52,7 +52,7 @@ gear_git_version: master
 # gear_git_refspec:
 # gear_git_update:
 
-gear_install_method: git
+gear_install_method: pip
 
 gear_pip_name: gear
 # gear_pip_executable:
