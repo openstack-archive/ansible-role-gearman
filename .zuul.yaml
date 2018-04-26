@@ -67,7 +67,9 @@
     gate:
       jobs:
         - ansible-role-gearman-fedora-27
+        - ansible-role-gearman-ubuntu-bionic
         - ansible-role-gearman-ubuntu-xenial
         - ansible-role-gearman-src-fedora-27
+        - ansible-role-gearman-src-ubuntu-bionic
         - ansible-role-gearman-src-ubuntu-xenial
         - tox-linters
