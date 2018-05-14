@@ -110,3 +110,17 @@
           - _gear_file_ssl_key_stat.stat.pw_name == 'gear'
           - _gear_file_ssl_key_stat.stat.gr_name == 'gear'
           - _gear_file_ssl_key_stat.stat.mode == '0600'
+
+    - name: Register /etc/gear/gearman-logging.conf
+      stat:
+        path: /etc/gear/gearman-logging.conf
+      register: _gear_file_log_config_stat
+
+    - name: Assert _gear_file_log_config_stat tests.
+      assert:
+        that:
+          - _gear_file_log_config_stat.stat.exists
+          - _gear_file_log_config_stat.stat.isreg
+          - _gear_file_log_config_stat.stat.pw_name == 'gear'
+          - _gear_file_log_config_stat.stat.gr_name == 'gear'
+          - _gear_file_log_config_stat.stat.mode == '0644'
