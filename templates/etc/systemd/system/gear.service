@@ -7,6 +7,8 @@ Type=simple
 # The prefix used when gear was installed. Be sure to update this
 # value if you are using a virtualenv.
 Environment="PREFIX=/usr/local"
+# Options to pass to gear.
+Environment="ARGS=--log-config /etc/gear/logging.conf"
 Group=gear
 User=gear
 ExecStart=/bin/sh -c "${PREFIX}/bin/geard -d ${ARGS}"

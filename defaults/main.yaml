@@ -45,6 +45,12 @@ gear_file_ssl_key_mode: 0600
 gear_file_ssl_key_owner: "{{ gear_user_name }}"
 gear_file_ssl_key_src: etc/gear/ssl/server.key
 
+gear_file_log_config_dest: /etc/gear/logging.conf
+gear_file_log_config_group: "{{ gear_user_group }}"
+gear_file_log_config_mode: 0644
+gear_file_log_config_owner: "{{ gear_user_name }}"
+gear_file_log_config_src: etc/gear/logging.conf
+
 # tasks/install.yaml
 gear_git_dest: "{{ ansible_user_dir }}/src/git.openstack.org/openstack-infra/gear"
 gear_git_uri: https://git.openstack.org/openstack-infra/gear
