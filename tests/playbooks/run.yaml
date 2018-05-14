@@ -23,6 +23,7 @@
     - name: Assert results are registered.
       assert:
         that:
+          - gear_file_log_config
           - gear_file_ssl_ca
           - gear_file_ssl_cert
           - gear_file_ssl_key
@@ -110,3 +111,17 @@
           - _gear_file_ssl_key_stat.stat.pw_name == 'gear'
           - _gear_file_ssl_key_stat.stat.gr_name == 'gear'
           - _gear_file_ssl_key_stat.stat.mode == '0600'
+
+    - name: Register /etc/gear/logging.conf
+      stat:
+        path: /etc/gear/logging.conf
+      register: _gear_file_log_config_stat
+
+    - name: Assert _gear_file_log_config_stat tests.
+      assert:
+        that:
+          - _gear_file_log_config_stat.stat.exists
+          - _gear_file_log_config_stat.stat.isreg
+          - _gear_file_log_config_stat.stat.pw_name == 'gear'
+          - _gear_file_log_config_stat.stat.gr_name == 'gear'
+          - _gear_file_log_config_stat.stat.mode == '0644'
