@@ -53,3 +53,13 @@
     owner: "{{ gear_file_ssl_key_owner }}"
     src: "{{ gear_file_ssl_key_src }}"
   register: gear_file_ssl_key
+
+- name: Install gear logging configuration.
+  become: yes
+  template:
+    dest: "{{ gear_file_log_config_dest }}"
+    group: "{{ gear_file_log_config_group }}"
+    mode: "{{ gear_file_log_config_mode }}"
+    owner: "{{ gear_file_log_config_owner }}"
+    src: "{{ gear_file_log_config_src }}"
+  register: gear_file_log_config
