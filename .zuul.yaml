@@ -12,9 +12,9 @@
     parent: ansible-role-gearman-base
 
 - job:
-    name: ansible-role-gearman-fedora-27
+    name: ansible-role-gearman-fedora-latest
     parent: ansible-role-gearman
-    nodeset: fedora-27
+    nodeset: fedora-latest
 
 - job:
     name: ansible-role-gearman-ubuntu-bionic
@@ -37,9 +37,9 @@
       gear_install_method: git
 
 - job:
-    name: ansible-role-gearman-src-fedora-27
+    name: ansible-role-gearman-src-fedora-latest
     parent: ansible-role-gearman-src
-    nodeset: fedora-27
+    nodeset: fedora-latest
 
 - job:
     name: ansible-role-gearman-src-ubuntu-bionic
@@ -53,24 +53,24 @@
 
 - project:
     templates:
-      - windmill-jobs-fedora-27
+      - windmill-jobs-fedora-latest
       - windmill-jobs-bionic
       - windmill-jobs-xenial
     check:
       jobs:
-        - ansible-role-gearman-fedora-27
+        - ansible-role-gearman-fedora-latest
         - ansible-role-gearman-ubuntu-bionic
         - ansible-role-gearman-ubuntu-xenial
-        - ansible-role-gearman-src-fedora-27
+        - ansible-role-gearman-src-fedora-latest
         - ansible-role-gearman-src-ubuntu-bionic
         - ansible-role-gearman-src-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
-        - ansible-role-gearman-fedora-27
+        - ansible-role-gearman-fedora-latest
         - ansible-role-gearman-ubuntu-bionic
         - ansible-role-gearman-ubuntu-xenial
-        - ansible-role-gearman-src-fedora-27
+        - ansible-role-gearman-src-fedora-latest
         - ansible-role-gearman-src-ubuntu-bionic
         - ansible-role-gearman-src-ubuntu-xenial
         - tox-linters
