@@ -24,4 +24,4 @@
   set_fact:
     gear_pip_name: "file://{{ gear_git_dest }}"
 
-- include: pip.yaml
+- include_tasks: pip.yaml

@@ -32,4 +32,4 @@
     - gear_pip_virtualenv_python is not defined
     - gear_pip_executable is not defined
 
-- include: "install/{{ gear_install_method }}.yaml"
+- include_tasks: "install/{{ gear_install_method }}.yaml"
