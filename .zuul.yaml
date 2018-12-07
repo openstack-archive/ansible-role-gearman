@@ -21,11 +21,6 @@
     parent: ansible-role-gearman
     nodeset: ubuntu-bionic
 
-- job:
-    name: ansible-role-gearman-ubuntu-xenial
-    parent: ansible-role-gearman
-    nodeset: ubuntu-xenial
-
 # Testing for gearman_install_method: git
 - job:
     name: ansible-role-gearman-src
@@ -46,31 +41,21 @@
     parent: ansible-role-gearman-src
     nodeset: ubuntu-bionic
 
-- job:
-    name: ansible-role-gearman-src-ubuntu-xenial
-    parent: ansible-role-gearman-src
-    nodeset: ubuntu-xenial
-
 - project:
     templates:
       - windmill-jobs-fedora-latest
       - windmill-jobs-bionic
-      - windmill-jobs-xenial
     check:
       jobs:
         - ansible-role-gearman-fedora-latest
         - ansible-role-gearman-ubuntu-bionic
-        - ansible-role-gearman-ubuntu-xenial
         - ansible-role-gearman-src-fedora-latest
         - ansible-role-gearman-src-ubuntu-bionic
-        - ansible-role-gearman-src-ubuntu-xenial
         - tox-linters
     gate:
       jobs:
         - ansible-role-gearman-fedora-latest
         - ansible-role-gearman-ubuntu-bionic
-        - ansible-role-gearman-ubuntu-xenial
         - ansible-role-gearman-src-fedora-latest
         - ansible-role-gearman-src-ubuntu-bionic
-        - ansible-role-gearman-src-ubuntu-xenial
         - tox-linters
